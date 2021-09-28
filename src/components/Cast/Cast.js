@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import * as Api from '../../services/Api';
 
 const Cast = () => {
-  const { id } = useParams();
+  const { movieId } = useParams();
   const [cast, setCast] = useState(null);
 
   useEffect(() => {
-    Api.fetchCredits(id).then(data => setCast(data.cast));
-  }, [id]);
+    Api.fetchCredits(movieId).then(data => setCast(data.results));
+  }, [movieId]);
   return (
     <ul>
       {cast &&
@@ -17,7 +17,7 @@ const Cast = () => {
             {profile_path ? (
               <img
                 alt={name}
-                src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
+                src={`https://image.tmdb.org/t/p/w150/${profile_path}`}
               />
             ) : (
               <img alt="Not found" src="" />
