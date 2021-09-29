@@ -8,20 +8,27 @@ import {
 } from 'react-router-dom';
 import { useParams } from 'react-router';
 import * as Api from '../../services/Api';
+import styles from './MovieDetailsPage.module.scss';
 
-const Cast = lazy(() => import('../../components/Cast'));
-const Reviews = lazy(() => import('../../components/Reviews'));
+const Cast = lazy(() =>
+  import('../../components/Cast' /* webpackChunkName: "Cast" */),
+);
+const Reviews = lazy(() =>
+  import('../../components/Reviews' /* webpackChunkName: "Reviews" */),
+);
 
 const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
   const { state } = useLocation();
-  const { movieId } = useParams();
+  const { id } = useParams();
   const history = useHistory();
   const { url, path } = useRouteMatch();
 
   useEffect(() => {
-    Api.fetchDetails(movieId).then(setMovie);
-  }, [movieId]);
+    Api.fetchDetails(id)
+      .then(setMovie)
+      .catch(error => console.log(error));
+  }, [id]);
 
   const handleToBack = () => {
     if (state?.query) {
@@ -43,20 +50,24 @@ const MovieDetailsPage = () => {
     });
   };
   return (
-    <>
-      <button className={'btn'} onClick={handleToBack}>
-        Back
+    <div className={styles.section}>
+      <button type="button" className={styles.btn} onClick={handleToBack}>
+        back
       </button>
       {movie && (
         <>
-          <h1>{movie.title}</h1>
+          <h1 className={styles.title}>{movie.title}</h1>
           <p>User Score: {movie.vote_average * 10}%</p>
-          <div>
+          <div className={styles.section}>
             <img
               alt={movie.title ?? movie.name}
-              src={`https://image.tmdb.org/t/p/w250/${movie.poster_path}`}
+              src={
+                movie.poster_path !== null
+                  ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                  : 'https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg'
+              }
             />
-            <div>
+            <div className={styles.section}>
               <h2>Overview</h2>
               <p>{movie.overview}</p>
 
@@ -64,9 +75,9 @@ const MovieDetailsPage = () => {
               <p>{movie.genres.map(genre => `${genre.name} `)}</p>
             </div>
           </div>
-          <div>
-            <h3>Additional information</h3>
-            <ul>
+          <div className={styles.section}>
+            <h2>Additional information</h2>
+            <ul className={styles.list}>
               <li>
                 <Link
                   to={{
@@ -106,7 +117,7 @@ const MovieDetailsPage = () => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 

@@ -1,0 +1,22 @@
+.section {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: stretch;
+}
+.list {
+  padding-bottom: 24px;
+  grid-gap: 16px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-between;
+  align-items: stretch;
+}
+li {
+  text-align: center;
+}

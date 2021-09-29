@@ -4,11 +4,11 @@ import * as Api from '../../services/Api';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState(null);
-  const { movieId } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
-    Api.fetchReviews(movieId).then(result => setReviews(result.results));
-  }, [movieId]);
+    Api.fetchReviews(id).then(result => setReviews(result.results));
+  }, [id]);
 
   if (reviews && reviews.length > 0) {
     return (

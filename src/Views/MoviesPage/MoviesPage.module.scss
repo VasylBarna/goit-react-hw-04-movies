@@ -1,0 +1,54 @@
+.section {
+  padding-bottom: 24px;
+  grid-gap: 16px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.form {
+  margin: 20px auto;
+  padding: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+}
+.input {
+  margin-bottom: 10px;
+  padding: 6px;
+  font: inherit;
+  font-size: 24px;
+  border: solid 1px #4c00fe;
+}
+
+.input::placeholder {
+  font: inherit;
+  font-size: 20px;
+}
+
+.button {
+  padding: 10px 15px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #4c00fe;
+  border: 1px solid #4c00fe;
+  box-sizing: border-box;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: transparent;
+  text-transform: uppercase;
+}
