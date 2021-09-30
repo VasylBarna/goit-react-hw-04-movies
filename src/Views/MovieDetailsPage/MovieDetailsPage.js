@@ -1,5 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import {
+  Switch,
   Link,
   Route,
   useRouteMatch,
@@ -107,12 +108,14 @@ const MovieDetailsPage = () => {
             </ul>
 
             <Suspense fallback={<h1>Loading...</h1>}>
-              <Route path={`${path}/cast`}>
-                <Cast />
-              </Route>
-              <Route path={`${path}/reviews`}>
-                <Reviews />
-              </Route>
+              <Switch>
+                <Route path={`${path}/cast`}>
+                  <Cast />
+                </Route>
+                <Route path={`${path}/reviews`}>
+                  <Reviews />
+                </Route>
+              </Switch>
             </Suspense>
           </div>
         </>
